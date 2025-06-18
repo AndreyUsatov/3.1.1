@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a user</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fdf8;
+            margin: 40px;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+            background: #f4f0f0;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #f3efef;
+            color: #090909;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Add a user</h2>
+
+<form th:action="@{/users/add}" method="post" th:object="${user}">
+    <label>Name:</label>
+    <input type="text" th:field="*{firstName}" required>
+
+    <label>Surname:</label>
+    <input type="text" th:field="*{lastName}" required>
+
+    <label>Age:</label>
+    <input type="number" th:field="*{age}" required min="0">
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required>
+
+    <button type="submit">Save</button>
+</form>
+
+<a class="back-link" th:href="@{/users}">Back</a>
+
+</body>
+</html>
